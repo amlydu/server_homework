@@ -10,7 +10,7 @@ get '/' do #this is just a blank page (we'll call it homepage)
 end
 
 post '/' do
-	
+	"Hello"
 end
 
 #code that sinatra suggested after I reached a 404 page looking for http://localhost:4567/foo
