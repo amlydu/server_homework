@@ -19,4 +19,10 @@
 # end
 # #Rails is different in that: when someone requests this URL, here's the location of the code I want you to run
 
-require 'sinatra'
+require 'sinatra' #just need this single line of code to start the server
+
+#makes this a dynamic website i.e. changes whenever you refresh
+#don't recommend make dynamic websites in Rails
+get '/' do
+	Time.now.to_s
+end
