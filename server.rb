@@ -1,12 +1,25 @@
 
 require 'sinatra'
+require 'httparty'
+require 'json'
+require 'nokogiri'
+
+class Ticker
+	include HTTParty
+end
+
+new_ticker = Ticker.get('http://finance.yahoo.com/q?s=AAPL')
+document = Nokogiri::HTML(new_ticker.body)
+price_span = document.xpath("//span[@id='yfs_l84_aapl']").first
+price = price_span.content
+"The current stock price of Apple is #{price}"
 #Sinatra: one of the most magical gems in existence: adds classes too, but it added some new methods to Ruby (globally scoped)
 
 #takes two args: a string(represents URL you want it to respond to) and a block(block of ruby code you'd like to see executed when request arrives)
 #defined a 'route'
 #This route is a essentially saying: when someone requests this URL, this is the block of code that I want you to run
 get '/' do #this is just a blank page (we'll call it homepage)
-	"Hello World" #essentially just returning a string
+	"The current stock price of Apple is #{price}"
 end
 
 post '/' do
